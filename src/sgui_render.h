@@ -19,6 +19,7 @@ const int WINDOW_HEIGHT = SCREEN_HEIGHT + 240;
 
 //The surface contained by the window
 SDL_Surface* screen = NULL;
+SDL_Window* gWindow = NULL;
 
 void apply(int x, int y, SDL_Surface* src, SDL_Surface* dst);
 SDL_Surface* load_surface(std::string path);

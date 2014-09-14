@@ -14,13 +14,13 @@ public:
 	int x, y; //The widget's position in its parent window.
 	int w, h; //The widget's width and height.
 	void* data; //The data used by the widget.
-	void*(show)(SguiWidget*); //Function pointer to show the widget on screen.
+	void(*show)(SguiWidget*); //Function pointer to show the widget on screen.
 	SguiWidget(){} //Empty constructor.
 	SguiWidget(SguiWindow* parent,
 				int x, int y,
 				int w, int h,
 				void* data,
-				void*(show)(SguiWidget*))
+				void(*show)(SguiWidget*))
 	{
 		this->parent = parent;
 		this->x = x; this->y = y;

@@ -56,10 +56,10 @@ public:
 		for (int j = 0; j < callbackArray.size(); j++)
 		{
 			bool successful = true;
-			for (int i = 0; i < callbackArray[j]->conditions.size && successful; i++)
+			for (int i = 0; i < callbackArray[j]->conditions.size(); i++)
 			{
 				//Check each condition for true / false, setting the 'successful' flag as necessary.
-				if (callbackArray[j]->conditions[i](callbackArray[j]) == false){ successful = false; }
+				if (callbackArray[j]->conditions[i](callbackArray[j]) == false){ successful = false; break; }
 			}
 			//Execute the callback if none of the conditions fail.
 			if (successful){ callbackArray[j]->callback(this); }
