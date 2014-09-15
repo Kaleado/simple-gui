@@ -1,0 +1,20 @@
+﻿Build started 9/15/2014 9:48:26 PM.
+     1>Project "D:\Miscellaneous\GitHub\simple-gui\simple-gui.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Programs\Visual Studio 2013 Express\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\main.cpp
+         main.cpp
+     1>d:\miscellaneous\github\simple-gui\src\sgui_window.hpp(17): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\miscellaneous\github\simple-gui\src\sgui_main.hpp(40): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\miscellaneous\github\simple-gui\src\sgui_main.hpp(44): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\miscellaneous\github\simple-gui\src\sgui_main.hpp(55): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\miscellaneous\github\simple-gui\src\sgui_main.hpp(78): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\miscellaneous\github\simple-gui\src\sgui_main.hpp(81): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\miscellaneous\github\simple-gui\src\sgui_main.hpp(94): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         D:\Programs\Visual Studio 2013 Express\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Miscellaneous\GitHub\simple-gui\Debug\simple-gui.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Miscellaneous\GitHub\simple-gui\Debug\simple-gui.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Miscellaneous\GitHub\simple-gui\Debug\simple-gui.lib" /MACHINE:X86 Debug\main.obj
+         simple-gui.vcxproj -> D:\Miscellaneous\GitHub\simple-gui\Debug\simple-gui.exe
+     1>Done Building Project "D:\Miscellaneous\GitHub\simple-gui\simple-gui.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.27

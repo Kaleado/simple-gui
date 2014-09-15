@@ -20,13 +20,15 @@ public:
 				int x, int y,
 				int w, int h,
 				void* data,
-				void(*show)(SguiWidget*))
+				void(*show)(SguiWidget*),
+				std::vector <SguiCallback> callbacks)
 	{
 		this->parent = parent;
 		this->x = x; this->y = y;
 		this->w = w; this->h = h;
 		this->data = data;
 		this->show = show;
+		this->callbacks = callbacks;
 	}
 };
 

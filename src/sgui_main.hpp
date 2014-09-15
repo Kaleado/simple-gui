@@ -20,10 +20,32 @@ public:
 	void remove_callback(SguiCallback* a)
 	{
 		//If the callback can be found in the callback array.
-		if (std::find(callbackArray.begin(), callbackArray.end(), *a) != callbackArray.end())
+		if (std::find(callbackArray.begin(), callbackArray.end(), a) != callbackArray.end())
 		{ 
 			//Remove the callback.
-			callbackArray.erase(std::find(callbackArray.begin(), callbackArray.end(), *a), callbackArray.end());
+			callbackArray.erase(std::find(callbackArray.begin(), callbackArray.end(), a), callbackArray.end());
+		}
+		return;
+	}
+	void spawn_window(int x, int y, 
+		int w, int h, 
+		std::string borderPath, 
+		std::vector <SguiWidget> widgets)
+	{
+		SguiWindow wnd;
+		wnd.border = IMG_Load(borderPath.c_str());
+		wnd.w = w; wnd.h = h; wnd.x = x; wnd.y = y;
+		wnd.widgets = widgets;
+		windows.push_back(wnd);
+		for (int i = 0; i < windows.back().widgets.size(); i++)
+		{
+			//Set the widget's parent to the window to be created, at the end of the windows vector.
+			windows.back().widgets[i].parent = &windows.back(); 
+			for (int j = 0; j < windows.back().widgets[i].callbacks.size(); j++)
+			{
+				windows.back().widgets[i].callbacks[j].parent = &windows.back().widgets[i];
+				callbackArray.push_back(&windows.back().widgets[i].callbacks[j]);
+			}
 		}
 		return;
 	}
@@ -62,7 +84,7 @@ public:
 				if (callbackArray[j]->conditions[i](callbackArray[j]) == false){ successful = false; break; }
 			}
 			//Execute the callback if none of the conditions fail.
-			if (successful){ callbackArray[j]->callback(this); }
+			if (successful){ callbackArray[j]->callback(callbackArray[j]); }
 		}
 		return;
 	}

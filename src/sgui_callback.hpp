@@ -13,7 +13,14 @@ class SguiCallback
 public:
 	SguiWidget* parent; //The widget to which this callback belongs. If none, is set to NULL.
 	std::vector <condition> conditions; //The conditions to be met in order for the callback to run.
-	void (*callback)(void*); //A function pointer to the function to be executed when the conditions are met.
+	void (*callback)(SguiCallback*); //A function pointer to the function to be executed when the conditions are met.
+	SguiCallback(SguiWidget* parent, std::vector <condition> conditions, void(*callback)(SguiCallback*))
+	{
+		this->parent = parent;
+		this->conditions = conditions;
+		this->callback = callback;
+		return;
+	}
 };
 
 #endif
