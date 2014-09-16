@@ -14,8 +14,8 @@ int camX=0, camY=0;
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
-const int WINDOW_WIDTH = SCREEN_WIDTH + 240;
-const int WINDOW_HEIGHT = SCREEN_HEIGHT + 240;
+const int WINDOW_WIDTH = SCREEN_WIDTH;
+const int WINDOW_HEIGHT = SCREEN_HEIGHT;
 
 //The surface contained by the window
 SDL_Surface* screen = NULL;

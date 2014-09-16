@@ -33,6 +33,8 @@ public:
 		std::vector <SguiWidget> widgets)
 	{
 		SguiWindow wnd;
+		wnd.mouseOffsetX = undefined;
+		wnd.mouseOffsetY = undefined;
 		wnd.border = IMG_Load(borderPath.c_str());
 		wnd.w = w; wnd.h = h; wnd.x = x; wnd.y = y;
 		wnd.widgets = widgets;
@@ -99,7 +101,7 @@ public:
 	}
 	void perform_gui_operations()
 	{
-		set_focus();
+		//set_focus();
 		execute_callbacks();
 		show_windows();
 		return;

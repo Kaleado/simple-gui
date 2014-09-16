@@ -7,6 +7,8 @@
 class SguiWindow
 {
 public:
+	bool isBeingDragged; //Whether the window is being dragged by the mouse.
+	int mouseOffsetX, mouseOffsetY; //The mouse offset within the window.
 	int x, y; //X and Y coordinates on the screen.
 	int w, h; //Width and height of the window.
 	SDL_Surface* border; //The image displayed around the window.

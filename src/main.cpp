@@ -1,3 +1,4 @@
+#define undefined -0x77777777
 #include "sgui_main.hpp"
 #undef main
 SguiEnvironment e;
@@ -27,22 +28,42 @@ bool isMouseClicked(SguiCallback *data)
 	return false;
 }
 
-void dragParent(SguiCallback* parent)
+bool isMouseUnclicked(SguiCallback *data)
+{
+	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	{
+		return false;
+	}
+	return true;
+}
+
+void showWidget(SguiWidget* parent)
+{
+	apply(parent->parent->x + parent->x, parent->parent->y + parent->y, parent->img, screen);
+	return;
+}
+
+void dragParentWindow(SguiCallback* parent)
 {
 	int mx, my;
 	int ox, oy;
 	SDL_GetMouseState(&mx, &my);
 	ox = mx - parent->parent->parent->x;
 	oy = my - parent->parent->parent->y;
-	parent->parent->parent->x = mx;
-	parent->parent->parent->y = my;
+	if (parent->parent->mouseOffsetX == undefined && parent->parent->mouseOffsetY == undefined)
+	{
+		parent->parent->mouseOffsetX = ox;
+		parent->parent->mouseOffsetY = oy;
+	}
+	parent->parent->parent->x = mx - parent->parent->mouseOffsetX;
+	parent->parent->parent->y = my - parent->parent->mouseOffsetY;
 	return;
 }
 
-void test(SguiCallback* parent)
+void undragParentWindow(SguiCallback* parent)
 {
-	parent->parent->parent->x = 50;
-	parent->parent->parent->y = 50;
+	parent->parent->mouseOffsetX = undefined;
+	parent->parent->mouseOffsetY = undefined;
 	return;
 }
 
@@ -56,15 +77,18 @@ void main()
 	SDL_SetSurfaceBlendMode(screen, SDL_BLENDMODE_BLEND);
 	SDL_Event ev;
 	bool quit = 0;
-	
-	SguiWidget wdg = SguiWidget(NULL, 0, 0, 100, 5, NULL, NULL, { SguiCallback(&wdg, { isMouseOver, isMouseClicked }, dragParent) });
-	//e.add_callback(SguiCallback(&wdg, {isMouseOver, isMouseClicked}, test), &wdg);
-	e.spawn_window(10, 10, 100, 75, "res/window.png", { wdg });
-
+	SguiWidget wdg = SguiWidget(
+		NULL, IMG_Load("res/titlebar.png"), 0, -30, 250, 30, NULL, showWidget, 
+		{SguiCallback({ isMouseOver, isMouseClicked }, dragParentWindow),
+		SguiCallback({ isMouseOver, isMouseUnclicked }, undragParentWindow),
+		});
+	SDL_Surface *u = IMG_Load("res/background.png");
 	while (!quit)
 	{
 		SDL_PollEvent(&ev);
 		if (ev.type == SDL_QUIT){ quit = true; }
+		if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_1){ e.spawn_window(10, 10, 100, 75, "res/window.png", { wdg }); }
+		apply(0, 0, u, screen);
 		e.perform_gui_operations();
 		SDL_UpdateWindowSurface(gWindow);
 	}
