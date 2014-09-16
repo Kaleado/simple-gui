@@ -19,23 +19,21 @@ public:
 	void* data; //The data used by the widget.
 	void(*show)(SguiWidget*); //Function pointer to show the widget on screen.
 	SguiWidget(){} //Empty constructor.
-	SguiWidget(SguiWindow* parent,
-				SDL_Surface* img,
+	SguiWidget(	SDL_Surface* img,
 				int x, int y,
 				int w, int h,
 				void* data,
 				void(*show)(SguiWidget*),
 				std::vector <SguiCallback> callbacks)
 	{
-		this->parent = parent;
 		this->img = img;
 		this->x = x; this->y = y;
 		this->w = w; this->h = h;
 		this->data = data;
 		this->show = show;
 		this->callbacks = callbacks;
-		mouseOffsetX = undefined;
-		mouseOffsetY = undefined;
+		this->mouseOffsetX = undefined;
+		this->mouseOffsetY = undefined;
 	}
 };
 

@@ -22,6 +22,17 @@ public:
 		}
 		return;
 	}
+	SguiWindow(int x, int y, int w, int h,
+		SDL_Surface* border, std::vector <SguiWidget> widgets)
+	{
+		this->x = x; this->y = y; this->w = w; this->h = h;
+		this->border = border;
+		this->widgets = widgets;
+		this->mouseOffsetX = undefined;
+		this->mouseOffsetY = undefined;
+		this->isBeingDragged = false;
+		return;
+	}
 };
 
 #endif

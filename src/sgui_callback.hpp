@@ -16,7 +16,6 @@ public:
 	void (*callback)(SguiCallback*); //A function pointer to the function to be executed when the conditions are met.
 	SguiCallback(std::vector <condition> conditions, void(*callback)(SguiCallback*))
 	{
-		//this->parent = parent;
 		this->conditions = conditions;
 		this->callback = callback;
 		return;
